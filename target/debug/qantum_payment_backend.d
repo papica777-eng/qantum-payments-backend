@@ -1,0 +1,1 @@
+C:\Users\papic\Desktop\QANTUM_HOLDING\PAYMENT\payments-backend\target\debug\qantum_payment_backend.exe: C:\Users\papic\Desktop\QANTUM_HOLDING\PAYMENT\payments-backend\src\main.rs C:\Users\papic\Desktop\QANTUM_HOLDING\PAYMENT\payments-backend\src\paypal_handler.rs C:\Users\papic\Desktop\QANTUM_HOLDING\PAYMENT\payments-backend\src\stripe_handler.rs

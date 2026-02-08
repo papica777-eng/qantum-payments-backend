@@ -1,0 +1,39 @@
+services:
+  # RUST BACKEND SERVICE
+  - type: web
+    name: qantum-payments-backend
+    env: rust
+    plan: free
+    region: frankfurt
+    buildCommand: cargo build --release --bin qantum_payment_backend
+    startCommand: ./target/release/qantum_payment_backend
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: RUST_LOG
+        value: info
+      # Connect to Redis service defined below
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: qantum-payments-cache
+          property: connectionString
+      # Secrets (you will be prompted to enter these in Render dashboard)
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+
+  # REDIS CACHE (For Idempotency & Session Store)
+  - type: redis
+    name: qantum-payments-cache
+    region: frankfurt
+    plan: free # Free tier is sufficient for dev/test
+    ipAllowList: [] # Access only from internal services (secure)
