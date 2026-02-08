@@ -5,7 +5,7 @@ services:
     env: rust
     plan: free
     region: frankfurt
-    branch: master # Explicitly matching your git repository branch
+    branch: main # Updated to match the renamed git branch
     buildCommand: cargo build --release --bin main
     startCommand: ./target/release/main
     healthCheckPath: /health
